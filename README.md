@@ -14,7 +14,7 @@
 
     知乎日报（知乎api）（toolbar+viewpager+fragment 实现子模块）Gson+Vollery
 
-    就要美拍（美拍api）
+    美拍视频（美拍视频api）
 
     动漫箩筐 建议使用jsoup直接解析网站  有子模块
 
@@ -27,6 +27,8 @@
     使用简介 （介绍app的使用）
 
     关于作者
+
+    分享
 
 功能细节处理：
 

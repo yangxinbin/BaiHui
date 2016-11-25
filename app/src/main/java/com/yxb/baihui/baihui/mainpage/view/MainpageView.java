@@ -5,4 +5,13 @@ package com.yxb.baihui.baihui.mainpage.view;
  */
 
 public interface MainpageView {
+    void selectAuthormanage();
+    void selectZhihunews();
+    void selectMeipaivideo();
+    void selectComicnews();
+    void selectBaihuimap();
+    void selectWeathernews();
+    void selectEnjoygame();
+    void selectUserhelp();
+    void selectAboutauthor();
 }

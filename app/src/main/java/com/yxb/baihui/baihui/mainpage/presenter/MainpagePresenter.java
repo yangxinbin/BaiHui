@@ -5,4 +5,5 @@ package com.yxb.baihui.baihui.mainpage.presenter;
  */
 
 public interface MainpagePresenter {
+    void switchNavigation(int id);
 }

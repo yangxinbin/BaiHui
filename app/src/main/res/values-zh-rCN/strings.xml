@@ -3,4 +3,16 @@
     <string name="app_name">百汇</string>
     <string name="title_activity_news_detail">新闻详情</string>
     <string name="title_activity_meipai_detail">美拍详情</string>
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+    <string name="action_settings">设置</string>
+    <string name="nav_authormanager">个人中心</string>
+    <string name="nav_zhihunews">知乎日报</string>
+    <string name="nav_meipaivideo">美拍视频</string>
+    <string name="nav_comicnews">动漫箩筐</string>
+    <string name="nav_baihuimap">百汇地图</string>
+    <string name="nav_weathernews">天气预报</string>
+    <string name="nav_enjoygame">轻松一刻</string>
+    <string name="nav_userhelp">使用简介</string>
+    <string name="nav_aboutauthor">关于作者</string>
 </resources>

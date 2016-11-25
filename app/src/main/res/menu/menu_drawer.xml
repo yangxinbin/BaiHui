@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_authormanager"
+            android:checkable="true"
+            android:icon="@drawable/authormanage"
+            android:title="个人中心" />
+        <item
+            android:id="@+id/nav_zhihunews"
+            android:icon="@drawable/zhihunews"
+            android:title="知乎日报" />
+        <item
+            android:id="@+id/nav_meipaivideo"
+            android:icon="@drawable/meipaiimage"
+            android:title="美拍视频" />
+        <item
+            android:id="@+id/nav_comicnews"
+            android:icon="@drawable/comicnews"
+            android:title="动漫箩筐" />
+        <item
+            android:id="@+id/nav_baihuimap"
+            android:icon="@drawable/baihuimap"
+            android:title="百汇地图" />
+        <item
+            android:id="@+id/nav_weathernews"
+            android:icon="@drawable/weathernews"
+            android:title="天气预报" />
+        <item
+            android:id="@+id/nav_enjoygame"
+            android:icon="@drawable/enjoygame"
+            android:title="轻松一刻" />
+    </group>
+
+    <item android:title="设置">
+        <menu>
+            <item
+                android:id="@+id/nav_userhelp"
+                android:icon="@drawable/userhelp"
+                android:title="使用简介" />
+            <item
+                android:id="@+id/nav_aboutauthor"
+                android:icon="@drawable/aboutauthor"
+                android:title="关于作者" />
+
+        </menu>
+    </item>
+
+</menu>
