@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".toutiaonews.windowview.toutiaonewsDetailActivity"
+            android:name=".zhihunews.windowview.ZhihunewsDetailActivity"
             android:label="@string/title_activity_news_detail"
             android:theme="@style/AppTheme_Translucent">
 

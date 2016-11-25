@@ -1,4 +1,4 @@
-package com.yxb.baihui.baihui.toutiaonews.windowview;
+package com.yxb.baihui.baihui.zhihunews.windowview;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import com.yxb.baihui.baihui.R;
  * Created by Administrator on 2016/11/22 0022.
  */
 
-public class toutiaonewsDetailActivity extends Activity{
+public class ZhihunewsDetailActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
