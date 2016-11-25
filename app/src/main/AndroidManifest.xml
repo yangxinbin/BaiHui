@@ -16,14 +16,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".zhihunews.windowview.ZhihunewsDetailActivity"
+            android:name=".toutiaonews.windowview.toutiaonewsDetailActivity"
             android:label="@string/title_activity_news_detail"
             android:theme="@style/AppTheme_Translucent">
 
         </activity>
         <activity
-            android:name=".meipaiimage.windowview.MeipaiimageDetailActivity"
-            android:label="@string/title_activity_news_detail"
+            android:name=".meipaivideo.windowview.MeipaivideoDetailActivity"
+            android:label="@string/title_activity_meipai_detail"
             android:theme="@style/AppTheme_Translucent">
 
         </activity>

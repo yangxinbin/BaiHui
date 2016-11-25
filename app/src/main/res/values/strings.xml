@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Baihui</string>
     <string name="title_activity_news_detail">ZhihunewsDetailActivity</string>
+    <string name="title_activity_meipai_detail">MeipaivideoDetailActivity</string>
 </resources>

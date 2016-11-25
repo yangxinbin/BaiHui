@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">百汇</string>
-    <string name="title_activity_news_detail">详情</string>
+    <string name="title_activity_news_detail">新闻详情</string>
+    <string name="title_activity_meipai_detail">美拍详情</string>
 </resources>
