@@ -42,6 +42,7 @@ public class MainpageActivity extends AppCompatActivity implements MainpageView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
         ButterKnife.bind(this);
+        navView.setItemIconTintList(null);//传入一个null参数，这样原本的彩色图标就可以显示出来了
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
         actionBarDrawerToggle.syncState();
