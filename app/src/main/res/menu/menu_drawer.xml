@@ -5,10 +5,10 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_authormanager"
-            android:checkable="true"
             android:icon="@drawable/authormanage"
             android:title="个人中心" />
         <item
+            android:checked="true"
             android:id="@+id/nav_zhihunews"
             android:icon="@drawable/zhihunews"
             android:title="知乎日报" />
