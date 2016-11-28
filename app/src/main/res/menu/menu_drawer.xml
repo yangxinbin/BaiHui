@@ -34,7 +34,7 @@
             android:title="轻松一刻" />
     </group>
 
-    <item android:title="设置">
+    <item android:title="帮助">
         <menu>
             <item
                 android:id="@+id/nav_userhelp"

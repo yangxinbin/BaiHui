@@ -49,7 +49,7 @@ public class MainpageActivity extends AppCompatActivity implements MainpageView 
         ButterKnife.bind(this);
         /*start DrawLayout item 选中字体颜色变化*/
         Resources resource=getBaseContext().getResources();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//版本问题控制
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//版本问题控制 API23以上
             csl = resource.getColorStateList(R.color.navigation_menu_item_color, null);
         }else {
             csl = resource.getColorStateList(R.color.navigation_menu_item_color);
