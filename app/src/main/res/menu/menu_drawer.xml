@@ -6,32 +6,32 @@
         <item
             android:id="@+id/nav_authormanager"
             android:icon="@drawable/authormanage"
-            android:title="个人中心" />
+            android:title="@string/nav_authormanager" />
         <item
             android:checked="true"
             android:id="@+id/nav_zhihunews"
             android:icon="@drawable/zhihunews"
-            android:title="知乎日报" />
+            android:title="@string/nav_zhihunews" />
         <item
             android:id="@+id/nav_meipaivideo"
             android:icon="@drawable/meipaiimage"
-            android:title="美拍视频" />
+            android:title="@string/nav_meipaivideo" />
         <item
             android:id="@+id/nav_comicnews"
             android:icon="@drawable/comicnews"
-            android:title="动漫箩筐" />
+            android:title="@string/nav_comicnews" />
         <item
             android:id="@+id/nav_baihuimap"
             android:icon="@drawable/baihuimap"
-            android:title="百汇地图" />
+            android:title="@string/nav_baihuimap" />
         <item
             android:id="@+id/nav_weathernews"
             android:icon="@drawable/weathernews"
-            android:title="天气预报" />
+            android:title="@string/nav_weathernews" />
         <item
             android:id="@+id/nav_enjoygame"
             android:icon="@drawable/enjoygame"
-            android:title="轻松一刻" />
+            android:title="@string/nav_enjoygame" />
     </group>
 
     <item android:title="帮助">
@@ -39,11 +39,11 @@
             <item
                 android:id="@+id/nav_userhelp"
                 android:icon="@drawable/userhelp"
-                android:title="使用简介" />
+                android:title="@string/nav_userhelp" />
             <item
                 android:id="@+id/nav_aboutauthor"
                 android:icon="@drawable/aboutauthor"
-                android:title="关于作者" />
+                android:title="@string/nav_aboutauthor" />
 
         </menu>
     </item>
