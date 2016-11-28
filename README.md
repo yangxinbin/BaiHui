@@ -12,7 +12,7 @@
 
     个人中心（用户管理 后台使用bmob）
 
-    知乎日报（知乎api）（toolbar+viewpager+fragment 实现子模块）Gson+Vollery
+    百汇日报（知乎api）（toolbar+viewpager+fragment 实现子模块）Gson+Vollery
 
     美拍视频（美拍视频api）
 

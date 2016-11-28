@@ -24,7 +24,7 @@ import com.yxb.baihui.baihui.mainpage.view.MainpageView;
 import com.yxb.baihui.baihui.meipaivideo.windowview.MeipaivideoFragment;
 import com.yxb.baihui.baihui.userhelp.UserhelpFragment;
 import com.yxb.baihui.baihui.weathernews.windowview.WeathernewsFragment;
-import com.yxb.baihui.baihui.zhihunews.windowview.ZhihunewsFragment;
+import com.yxb.baihui.baihui.Toutiaonews.windowview.ToutiaonewsFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -87,7 +87,7 @@ public class MainpageActivity extends AppCompatActivity implements MainpageView 
 
     @Override
     public void selectZhihunews() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, new ZhihunewsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, new ToutiaonewsFragment()).commit();
         toolbar.setTitle(R.string.nav_zhihunews);
     }
 
