@@ -1,5 +1,8 @@
 package com.yxb.baihui.baihui.mainpage.windowview;
 
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -37,11 +40,22 @@ public class MainpageActivity extends AppCompatActivity implements MainpageView 
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private MainpagePresenter mainpagePresenter;
+    private ColorStateList csl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
         ButterKnife.bind(this);
+        /*start DrawLayout item 选中字体颜色变化*/
+        Resources resource=getBaseContext().getResources();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//版本问题控制
+            csl = resource.getColorStateList(R.color.navigation_menu_item_color, null);
+        }else {
+            csl = resource.getColorStateList(R.color.navigation_menu_item_color);
+        }
+        navView.setItemTextColor(csl);
+        /*end*/
         navView.setItemIconTintList(null);//传入一个null参数，这样原本的彩色图标就可以显示出来了
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
