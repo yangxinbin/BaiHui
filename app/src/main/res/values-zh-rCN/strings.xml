@@ -7,7 +7,7 @@
     <string name="drawer_close">关闭</string>
     <string name="action_settings">设置</string>
     <string name="nav_authormanager">个人中心</string>
-    <string name="nav_zhihunews">知乎日报</string>
+    <string name="nav_baihuinews">百汇日报</string>
     <string name="nav_meipaivideo">美拍视频</string>
     <string name="nav_comicnews">动漫箩筐</string>
     <string name="nav_baihuimap">百汇地图</string>
@@ -15,4 +15,15 @@
     <string name="nav_enjoygame">轻松一刻</string>
     <string name="nav_userhelp">使用简介</string>
     <string name="nav_aboutauthor">关于作者</string>
+
+    <string name="tab_topnews">头条</string>
+    <string name="tab_society">社会</string>
+    <string name="tab_domestic">国内</string>
+    <string name="tab_international">国际</string>
+    <string name="tab_entertainment">娱乐</string>
+    <string name="tab_sports">体育</string>
+    <string name="tab_Military">军事</string>
+    <string name="tab_science">科技</string>
+    <string name="tab_finance">财经</string>
+    <string name="tab_fashion">时尚</string>
 </resources>

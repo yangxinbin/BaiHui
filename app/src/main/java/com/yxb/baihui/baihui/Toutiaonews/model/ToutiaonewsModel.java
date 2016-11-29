@@ -5,4 +5,6 @@ package com.yxb.baihui.baihui.Toutiaonews.model;
  */
 
 public interface ToutiaonewsModel {
+    void loadNews(String url, int type, OnLoadToutiaonewsListListener listener);
+//    void loadNewsDetail(String docid, OnLoadNewsDetailListener listener);
 }
