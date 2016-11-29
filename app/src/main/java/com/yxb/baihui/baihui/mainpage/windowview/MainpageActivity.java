@@ -88,7 +88,7 @@ public class MainpageActivity extends AppCompatActivity implements MainpageView 
     @Override
     public void selectZhihunews() {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, new ToutiaonewsFragment()).commit();
-        toolbar.setTitle(R.string.nav_zhihunews);
+        toolbar.setTitle(R.string.nav_baihuinews);
     }
 
     @Override
