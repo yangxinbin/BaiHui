@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".mainpage.windowview.MainpageActivity">
 
     <group android:checkableBehavior="single">
         <item
@@ -8,7 +10,7 @@
             android:title="@string/nav_authormanager" />
         <item
             android:checked="true"
-            android:id="@+id/nav_zhihunews"
+            android:id="@+id/nav_baihuinews"
             android:icon="@drawable/zhihunews"
             android:title="@string/nav_baihuinews" />
         <item

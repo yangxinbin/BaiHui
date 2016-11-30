@@ -63,7 +63,7 @@ public class MainpageActivity extends AppCompatActivity implements MainpageView 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         setupDrawerContent(navView);
         mainpagePresenter = new MainpagePresenterImpl(this);
-        selectZhihunews();
+        selectBaihuinews();
     }
 
     private void setupDrawerContent(NavigationView navView) {
@@ -86,7 +86,7 @@ public class MainpageActivity extends AppCompatActivity implements MainpageView 
     }
 
     @Override
-    public void selectZhihunews() {
+    public void selectBaihuinews() {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, new ToutiaonewsFragment()).commit();
         toolbar.setTitle(R.string.nav_baihuinews);
     }

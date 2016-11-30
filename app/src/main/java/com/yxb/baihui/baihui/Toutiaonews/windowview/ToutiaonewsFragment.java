@@ -43,7 +43,7 @@ public class ToutiaonewsFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_toutiaonews, null);
         ButterKnife.bind(this, view);
         viewpager.setOffscreenPageLimit(2);
@@ -58,7 +58,13 @@ public class ToutiaonewsFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_science));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_finance));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_fashion));
-      //  tabLayout.setupWithViewPager(viewpager);
+//        tabLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                tabLayout.setupWithViewPager(viewpager);
+//            }
+//        });
+        tabLayout.setupWithViewPager(viewpager);
         return view;
     }
 
@@ -103,6 +109,9 @@ public class ToutiaonewsFragment extends Fragment {
             return mFragments.size();
         }
 
-
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
     }
 }

@@ -6,7 +6,7 @@ package com.yxb.baihui.baihui.mainpage.view;
 
 public interface MainpageView {
     void selectAuthormanage();
-    void selectZhihunews();
+    void selectBaihuinews();
     void selectMeipaivideo();
     void selectComicnews();
     void selectBaihuimap();

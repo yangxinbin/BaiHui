@@ -21,8 +21,8 @@ public class MainpagePresenterImpl implements MainpagePresenter {
             case R.id.nav_authormanager:
                 mainpageView.selectAuthormanage();
                 break;
-            case R.id.nav_zhihunews:
-                mainpageView.selectZhihunews();
+            case R.id.nav_baihuinews:
+                mainpageView.selectBaihuinews();
                 break;
             case R.id.nav_meipaivideo:
                 mainpageView.selectMeipaivideo();
@@ -46,7 +46,7 @@ public class MainpagePresenterImpl implements MainpagePresenter {
                 mainpageView.selectAboutauthor();
                 break;
             default:
-                mainpageView.selectZhihunews();
+                mainpageView.selectBaihuinews();
                 break;
 
         }
