@@ -24,6 +24,9 @@
             android:layout_height="match_parent"
             android:elevation="5dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <!--
+            app:layout_behavior="@string/appbar_scrolling_view_behavior   newstab 不显示的原因 加上就好
+            -->
         </android.support.design.widget.CoordinatorLayout>
 
         <android.support.design.widget.NavigationView

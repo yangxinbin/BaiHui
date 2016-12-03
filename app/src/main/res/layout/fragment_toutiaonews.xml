@@ -13,9 +13,11 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:tabSelectedTextColor="@color/gray"
-            app:tabTextColor="@color/white"
-            app:tabIndicatorColor="@color/white"/>
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/gray"
+            app:tabIndicatorColor="@color/white"
+            app:tabMode="scrollable"/>
     </android.support.design.widget.AppBarLayout>
 
 
