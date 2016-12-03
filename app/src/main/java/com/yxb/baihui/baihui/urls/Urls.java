@@ -10,6 +10,7 @@ public class Urls {
     public static final String END_URL = "&key=22b714e5c6a52c651a1fd640e47e6383";
 
     public static final String TYPE = "?type=";
+    public static final String HOST_TYPE =HOST+TYPE;
 
     public static final String TOP_ID = "top";
     public static final String SHEHUI_ID = "shehui";

@@ -26,6 +26,7 @@
     <string name="tab_finance">finance</string>
     <string name="tab_fashion">fashion</string>
 
+    <string name="load_fail">load fail!</string>
 
 
 </resources>

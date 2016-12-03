@@ -7,10 +7,11 @@
 
     <color name="white">#ffffff</color>
     <color name="gray">#e9e9e9</color>
-    <color name="black">#515151</color>
+    <color name="black">#262626</color>
     <color name="circlerange">#95dcff</color>
     <color name="selected">#07a9fa</color>
     <color name="pressed">#95dafc</color>
     <color name="focused">#32bbff</color>
+    <color name="secondary_text">#494949</color>
 
 </resources>

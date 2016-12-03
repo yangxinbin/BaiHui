@@ -1,12 +1,84 @@
 package com.yxb.baihui.baihui.Toutiaonews.model;
 
+import android.util.Log;
+
+import com.yxb.baihui.baihui.Toutiaonews.NewsJsonUtils;
+import com.yxb.baihui.baihui.Toutiaonews.bean.ToutiaonewsBean;
+import com.yxb.baihui.baihui.Toutiaonews.windowview.ToutiaonewsFragment;
+import com.yxb.baihui.baihui.urls.Urls;
+import com.yxb.baihui.baihui.utils.OkHttpUtils;
+
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/11/29 0029.
  */
 
 public class ToutiaonewsModelImpl implements ToutiaonewsModel{
+    /**
+     * 加载新闻列表
+     * @param url
+     * @param listener
+     */
     @Override
-    public void loadNews(String url, int type, OnLoadToutiaonewsListListener listener) {
+    public void loadNews(String url, final int type, final OnLoadToutiaonewsListListener listener) {
+        OkHttpUtils.ResultCallback<String> loadNewsCallback = new OkHttpUtils.ResultCallback<String>() {
+            @Override
+            public void onSuccess(String response) {
+                Log.v("jjjjjjjjjjjjjjjj",response+"-----------");
+                List<ToutiaonewsBean> newsBeanList = NewsJsonUtils.readJsonNewsBeans(response, getID(type));
+                listener.onSuccess(newsBeanList);
+            }
 
+            @Override
+            public void onFailure(Exception e) {
+                listener.onFailure("load news list failure.", e);
+            }
+        };
+        OkHttpUtils.get(url, loadNewsCallback);
+    }
+    /**
+     * 获取ID
+     * @param type
+     * @return
+     */
+    private String getID(int type) {
+        String id;
+        switch (type) {
+            case ToutiaonewsFragment.NEWS_TYPE_TOPNEWS:
+                id = Urls.TOP_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_SOCIETY:
+                id = Urls.SHEHUI_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_DOMESTIC:
+                id = Urls.GUOMEI_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_INTERNATIONAL:
+                id = Urls.GUOJI_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_ENTERTAINMENT:
+                id = Urls.YULE_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_SPORTS:
+                id = Urls.TIYU_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_MILITARY:
+                id = Urls.JUNSHI_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_SCIENCE:
+                id = Urls.KEJI_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_FINANCE:
+                id = Urls.CAIJING_ID;
+                break;
+            case ToutiaonewsFragment.NEWS_TYPE_FASHION:
+                id = Urls.SHISHANG_ID;
+                break;
+            default:
+                id = Urls.TOP_ID;
+                break;
+        }
+        return id;
     }
 }

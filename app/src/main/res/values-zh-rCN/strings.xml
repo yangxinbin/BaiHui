@@ -26,4 +26,5 @@
     <string name="tab_science">科技</string>
     <string name="tab_finance">财经</string>
     <string name="tab_fashion">时尚</string>
+    <string name="load_fail">加载数据失败!</string>
 </resources>

@@ -4,6 +4,7 @@ package com.yxb.baihui.baihui.Toutiaonews.windowview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import com.yxb.baihui.baihui.Toutiaonews.presenter.ToutiaonewsPresenter;
 import com.yxb.baihui.baihui.Toutiaonews.presenter.ToutiaonewsPresenterImpl;
 import com.yxb.baihui.baihui.Toutiaonews.view.ToutiaonewsView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -118,22 +120,37 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
 
     @Override
     public void showProgress() {
-
+        swipeRefreshWidget.setRefreshing(true);
     }
 
     @Override
     public void addNews(List<ToutiaonewsBean> newsList) {
+        adapter.isShowFooter(true);
+        if (mData == null) {
+            mData = new ArrayList<ToutiaonewsBean>();
+        }
+        mData.addAll(newsList);
 
+        adapter.setmDate(mData);
+
+        //如果没有更多数据了,则隐藏footer布局
+        if (newsList == null || newsList.size() == 0) {
+            adapter.isShowFooter(false);
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void hideProgress() {
-
+        swipeRefreshWidget.setRefreshing(false);
     }
 
     @Override
     public void showLoadFailMsg() {
-
+        View view = getActivity() == null ? recycleView.getRootView() : getActivity().findViewById(R.id.drawer_layout);
+        if (isAdded()) {
+            Snackbar.make(view, getResources().getString(R.string.load_fail), Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     @Override
