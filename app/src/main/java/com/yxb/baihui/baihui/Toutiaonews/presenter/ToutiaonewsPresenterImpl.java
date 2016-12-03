@@ -19,7 +19,7 @@ public class ToutiaonewsPresenterImpl implements ToutiaonewsPresenter {
     }
 
     @Override
-    public void loadNews(int type, int page) {
+    public void loadNews(int type) {
 
     }
 }

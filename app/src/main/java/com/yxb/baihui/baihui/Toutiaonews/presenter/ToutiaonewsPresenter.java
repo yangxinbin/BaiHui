@@ -5,5 +5,5 @@ package com.yxb.baihui.baihui.Toutiaonews.presenter;
  */
 
 public interface ToutiaonewsPresenter {
-    void loadNews(int type, int page);
+    void loadNews(int type);
 }

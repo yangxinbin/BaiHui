@@ -5,4 +5,5 @@ package com.yxb.baihui.baihui.urls;
  */
 
 public class Urls {
+
 }
