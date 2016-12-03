@@ -46,7 +46,7 @@ public class ToutiaonewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_toutiaonews, null);
         ButterKnife.bind(this, view);
-        viewpager.setOffscreenPageLimit(2);
+        viewpager.setOffscreenPageLimit(3);
         setupViewPager(viewpager);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_topnews));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_society));

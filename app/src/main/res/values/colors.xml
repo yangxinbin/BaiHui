@@ -3,7 +3,10 @@
     <color name="colorPrimary">#52e8ff</color>
     <color name="colorPrimaryDark">#2cd5ff</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="primary_light">#f97ba6</color>
+
     <color name="white">#ffffff</color>
+    <color name="gray">#dedede</color>
     <color name="black">#515151</color>
     <color name="circlerange">#95dcff</color>
     <color name="selected">#07a9fa</color>

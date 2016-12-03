@@ -2,6 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <!-- 状态栏和标题栏颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -17,6 +19,10 @@
         <item name="android:actionMenuTextColor">@android:color/black</item>
         <!-- textColor 定义标题文字的颜色 -->
         <item name="android:textColorPrimary">@color/white</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <!-- 左边的箭头指示-->
     <style name="left_Drawer_Arrow_Style" parent="Widget.AppCompat.DrawerArrowToggle">
