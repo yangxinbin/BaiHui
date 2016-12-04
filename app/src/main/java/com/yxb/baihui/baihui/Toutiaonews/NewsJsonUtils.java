@@ -1,5 +1,7 @@
 package com.yxb.baihui.baihui.Toutiaonews;
 
+import android.util.Log;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -32,18 +34,11 @@ public class NewsJsonUtils {
         try {
             JsonParser parser = new JsonParser();
             JsonObject jsonObj = parser.parse(res).getAsJsonObject();
-            JsonElement jsonElement = jsonObj.get(value);
-            if(jsonElement == null) {
-                return null;
-            }
-            JsonArray jsonArray = jsonElement.getAsJsonArray();
-            for (int i = 1; i < jsonArray.size(); i++) {
-                JsonObject jo = jsonArray.get(i).getAsJsonObject();
-                if (!jo.has("type")) {
-                    ToutiaonewsBean news = JsonUtils.deserialize(jo, ToutiaonewsBean.class);
+                if (!jsonObj.has("type")) {
+                    ToutiaonewsBean news = JsonUtils.deserialize(jsonObj, ToutiaonewsBean.class);
+                   // Log.v("nnnnnnnn","----news-------"+news.getResult().getData().get(1).getTitle());
                     beans.add(news);
                 }
-            }
         } catch (Exception e) {
         }
         return beans;

@@ -25,8 +25,8 @@ public class ToutiaonewsModelImpl implements ToutiaonewsModel{
         OkHttpUtils.ResultCallback<String> loadNewsCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
-                Log.v("jjjjjjjjjjjjjjjj",response+"-----------");
                 List<ToutiaonewsBean> newsBeanList = NewsJsonUtils.readJsonNewsBeans(response, getID(type));
+                Log.v("jjjjjjjjjjjjjjjj",newsBeanList+"------newsBeanList-----");
                 listener.onSuccess(newsBeanList);
             }
 

@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Administrator on 2016/12/1 0001.
  */
 
-public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private OnItemnewsClickListener mOnItemnewsClickListener;//自注册的接口给调用者用于点击逻辑
     private List<ToutiaonewsBean> mData;
@@ -31,14 +31,15 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mData = data;
         this.notifyDataSetChanged();
     }
+
     public ToutiaonewsAdapter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
     @Override
     public int getItemViewType(int position) {
         // 最后一个item设置为footerView
-        if(!mShowFooter) {
+        if (!mShowFooter) {
             return TYPE_ITEM;
         }
         if (position + 1 == getItemCount()) {
@@ -50,7 +51,7 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_ITEM) {
+        if (viewType == TYPE_ITEM) {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_news, parent, false);
             ItemViewHolder vh = new ItemViewHolder(v);
@@ -61,14 +62,15 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             return new FooterViewHolder(view);
-        }    }
+        }
+    }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof ItemViewHolder) {
+        if (holder instanceof ItemViewHolder) {
 
             ToutiaonewsBean news = mData.get(position);
-            if(news == null) {
+            if (news == null) {
                 return;
             }
             ((ItemViewHolder) holder).mTitle.setText(news.getResult().getData().get(position).getTitle());
@@ -78,8 +80,8 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        int begin = mShowFooter?1:0;
-        if(mData == null) {
+        int begin = mShowFooter ? 1 : 0;
+        if (mData == null) {
             return begin;
         }
         return mData.size() + begin;
@@ -88,9 +90,11 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void isShowFooter(boolean showFooter) {
         this.mShowFooter = showFooter;
     }
+
     public boolean isShowFooter() {
         return this.mShowFooter;
     }
+
     public class FooterViewHolder extends RecyclerView.ViewHolder {
 
         public FooterViewHolder(View view) {
@@ -98,6 +102,7 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
     }
+
     public ToutiaonewsBean getItem(int position) {
         return mData == null ? null : mData.get(position);
     }
@@ -109,6 +114,7 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public interface OnItemnewsClickListener {
         public void onItemClick(View view, int position);
     }
+
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView mTitle;
@@ -123,7 +129,7 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         @Override
         public void onClick(View view) {
-            if(mOnItemnewsClickListener != null) {
+            if (mOnItemnewsClickListener != null) {
                 mOnItemnewsClickListener.onItemClick(view, this.getPosition());
             }
         }

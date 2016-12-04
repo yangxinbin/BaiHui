@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ToutiaonewsRecyclerviewFragment extends Fragment implements ToutiaonewsView,SwipeRefreshLayout.OnRefreshListener {
+public class ToutiaonewsRecyclerviewFragment extends Fragment implements ToutiaonewsView, SwipeRefreshLayout.OnRefreshListener {
 
     @Bind(R.id.recycle_view)
     RecyclerView recycleView;
@@ -74,10 +73,9 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
         adapter.setOnItemnewsClickListener(mOnItemClickListener);
         recycleView.setAdapter(adapter);
         recycleView.addOnScrollListener(mOnScrollListener);
-
-
         return view;
     }
+
     private ToutiaonewsAdapter.OnItemnewsClickListener mOnItemClickListener = new ToutiaonewsAdapter.OnItemnewsClickListener() {
         @Override
         public void onItemClick(View view, int position) {
@@ -109,12 +107,14 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-//            if (newState == RecyclerView.SCROLL_STATE_IDLE
-//                    && lastVisibleItem + 1 == adapter.getItemCount()
-//                    && adapter.isShowFooter()) {//加载判断条件 手指离开屏幕 到了footeritem
-//                //加载更多
-//                mNewsPresenter.loadNews(mType);
-//        }
+            if (newState == RecyclerView.SCROLL_STATE_IDLE
+                    && lastVisibleItem + 1 == adapter.getItemCount()
+                    && adapter.isShowFooter()) {//加载判断条件 手指离开屏幕 到了footeritem
+                //加载更多
+                mNewsPresenter.loadNews(mType);
+                Log.v("jjjjjjjjjjjjjjjj", "------loadNews-----");
+
+            }
         }
     };
 
@@ -125,19 +125,20 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
 
     @Override
     public void addNews(List<ToutiaonewsBean> newsList) {
+        Log.v("jjjjjjjjjjjjjjjj", "------newsList-----"+newsList);
         adapter.isShowFooter(true);
         if (mData == null) {
             mData = new ArrayList<ToutiaonewsBean>();
         }
         mData.addAll(newsList);
-
+        Log.v("jjjjjjjjjjjjjjjj", "------mData-----"+mData);
         adapter.setmDate(mData);
-
         //如果没有更多数据了,则隐藏footer布局
         if (newsList == null || newsList.size() == 0) {
             adapter.isShowFooter(false);
         }
         adapter.notifyDataSetChanged();
+
     }
 
     @Override
@@ -164,6 +165,7 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
         if (mData != null) {
             mData.clear();
         }
+        Log.v("jjjjjjjjjjjjjjjj", "------onRefresh-----");
         mNewsPresenter.loadNews(mType);
     }
 }
