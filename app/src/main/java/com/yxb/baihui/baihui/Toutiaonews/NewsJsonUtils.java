@@ -34,11 +34,13 @@ public class NewsJsonUtils {
         try {
             JsonParser parser = new JsonParser();
             JsonObject jsonObj = parser.parse(res).getAsJsonObject();
-                if (!jsonObj.has("type")) {
+            JsonObject jsonObjresult = jsonObj.getAsJsonObject("result");
+            JsonArray jsonArray = jsonObjresult.getAsJsonArray(value);
+            for (int i = 0; i <= jsonArray.size(); i++){
+                JsonObject jo = jsonArray.get(i).getAsJsonObject();
                     ToutiaonewsBean news = JsonUtils.deserialize(jsonObj, ToutiaonewsBean.class);
-                   // Log.v("nnnnnnnn","----news-------"+news.getResult().getData().get(1).getTitle());
-                    beans.add(news);
-                }
+                    beans.add(news);//这里会将所有的json对象转换为bean对象
+            }
         } catch (Exception e) {
         }
         return beans;
