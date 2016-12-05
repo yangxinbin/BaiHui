@@ -73,6 +73,7 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
         adapter.setOnItemnewsClickListener(mOnItemClickListener);
         recycleView.setAdapter(adapter);
         recycleView.addOnScrollListener(mOnScrollListener);
+        onRefresh();
         return view;
     }
 
