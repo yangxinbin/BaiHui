@@ -26,7 +26,7 @@ public class ToutiaonewsModelImpl implements ToutiaonewsModel{
             @Override
             public void onSuccess(String response) {
                 List<ToutiaonewsBean> newsBeanList = NewsJsonUtils.readJsonNewsBeans(response, getID(type));
-                Log.v("jjjjjjjjjjjjjjjj",newsBeanList+"------newsBeanList-----");
+                Log.v("jjjjjjjjjjjjjjjj",newsBeanList.size()+"------newsBeanList-----");
                 listener.onSuccess(newsBeanList);
             }
 

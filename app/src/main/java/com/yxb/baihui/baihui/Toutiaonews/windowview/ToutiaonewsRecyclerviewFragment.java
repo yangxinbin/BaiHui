@@ -125,13 +125,13 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
 
     @Override
     public void addNews(List<ToutiaonewsBean> newsList) {
-        Log.v("jjjjjjjjjjjjjjjj", "------newsList-----"+newsList);
+        Log.v("jjjjjjjjjjjjjjjj", "------newsList-----"+newsList.size());
         adapter.isShowFooter(true);
         if (mData == null) {
             mData = new ArrayList<ToutiaonewsBean>();
         }
         mData.addAll(newsList);
-        Log.v("jjjjjjjjjjjjjjjj", "------mData-----"+mData);
+        Log.v("jjjjjjjjjjjjjjjj", "------mData-----"+mData.size());
         adapter.setmDate(mData);
         //如果没有更多数据了,则隐藏footer布局
         if (newsList == null || newsList.size() == 0) {

@@ -28,7 +28,7 @@ public class ToutiaonewsPresenterImpl implements ToutiaonewsPresenter,OnLoadTout
     public void loadNews(int type) {
         String url = getUrl(type);
         //刷新的时候才显示刷新进度条
-        toutiaonewsView.showProgress();
+        //toutiaonewsView.showProgress();
         toutiaonewsModel.loadNews(url, type, this);
     }
 
