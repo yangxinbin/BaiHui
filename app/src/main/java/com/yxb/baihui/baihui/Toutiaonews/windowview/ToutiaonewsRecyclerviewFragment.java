@@ -112,7 +112,7 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
                     && lastVisibleItem + 1 == adapter.getItemCount()
                     && adapter.isShowFooter()) {//加载判断条件 手指离开屏幕 到了footeritem
                 //加载更多
-                mNewsPresenter.loadNews(mType);
+                //mNewsPresenter.loadNews(mType);//加载最后报错
                 Log.v("jjjjjjjjjjjjjjjj", "------loadNews-----");
 
             }
