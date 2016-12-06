@@ -2,6 +2,7 @@ package com.yxb.baihui.baihui.Toutiaonews.windowview;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.yxb.baihui.baihui.R;
 import com.yxb.baihui.baihui.Toutiaonews.ToutiaonewsAdapter;
@@ -36,9 +38,11 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
     SwipeRefreshLayout swipeRefreshWidget;
     private ToutiaonewsPresenter mNewsPresenter;
     private int mType = ToutiaonewsFragment.NEWS_TYPE_TOPNEWS;
+    private List<ToutiaonewsBean> mDataall;
     private List<ToutiaonewsBean> mData;
     private LinearLayoutManager mLayoutManager;
     private ToutiaonewsAdapter adapter;
+    int over;//加載到的item数
 
 
     public static ToutiaonewsRecyclerviewFragment newInstance(int type) {
@@ -113,6 +117,22 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
                     && adapter.isShowFooter()) {//加载判断条件 手指离开屏幕 到了footeritem
                 //加载更多
                 //mNewsPresenter.loadNews(mType);//加载最后报错
+                int count = adapter.getItemCount();
+                Log.v("jjjjjjjjjjjjjjjj", "------count-----"+count);
+                int i;
+                for (i = count; i < count + 5; i++) {
+                    Log.v("jjjjjjjjjjjjjjjj", "------i-----"+i);
+                    //Log.v("jjjjjjjjjjjjjjjj", "------mDataall.size()-----"+mDataall.size());
+                    if (i >= (mDataall.size()-1)){//比如一共30条新闻 这个条件当为29时还是可以把30那条新闻加上去的
+                        Log.v("jjjjjjjjjjjjjjjj", "------break-----");
+                        noMoreMsg();
+                        break;
+                    }
+                    Log.v("jjjjjjjjjjjjjjjj", "------+1-----");
+                    adapter.addItem(mDataall.get(i + 1));//addItem里面记得要notifyDataSetChanged 否则第一次加载不会显示数据
+                    Log.v("jjjjjjjjjjjjjjjj", "------mDataall.get(i + 1)-----"+mDataall.get(i + 1).getResult().getData().get(i+1).getTitle());
+                }
+                over=i;
                 Log.v("jjjjjjjjjjjjjjjj", "------loadNews-----");
 
             }
@@ -128,30 +148,54 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
     public void addNews(List<ToutiaonewsBean> newsList) {
         Log.v("jjjjjjjjjjjjjjjj", "------newsList-----"+newsList.size());
         adapter.isShowFooter(true);
-        if (mData == null) {
+        if (mData == null && mDataall == null) {
+            mDataall = new ArrayList<ToutiaonewsBean>();
             mData = new ArrayList<ToutiaonewsBean>();
         }
-        mData.addAll(newsList);
+        mDataall.addAll(newsList);//一次加载所有  给后面的加载用
+        for (int i= 0 ;i<5;i++){
+            mData.add(mDataall.get(i));
+        }
         Log.v("jjjjjjjjjjjjjjjj", "------mData-----"+mData.size());
         adapter.setmDate(mData);
-        //如果没有更多数据了,则隐藏footer布局
-        if (newsList == null || newsList.size() == 0) {
-            adapter.isShowFooter(false);
-        }
-        adapter.notifyDataSetChanged();
-
     }
 
     @Override
     public void hideProgress() {
-        swipeRefreshWidget.setRefreshing(false);
+        if (swipeRefreshWidget != null){
+            swipeRefreshWidget.setRefreshing(false);//报错因为在onDestroy() 使用了ButterKnife.unbind(this) swipeRefreshWidget id找不到;
+        }
     }
 
     @Override
     public void showLoadFailMsg() {
         View view = getActivity() == null ? recycleView.getRootView() : getActivity().findViewById(R.id.drawer_layout);
         if (isAdded()) {
-            Snackbar.make(view, getResources().getString(R.string.load_fail), Snackbar.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(view, getResources().getString(R.string.load_fail), Snackbar.LENGTH_SHORT);
+            View snackbarview = snackbar.getView();
+            snackbarview.setBackgroundColor(getResources().getColor(R.color.snackbar));
+            TextView tvSnackbarText = (TextView) snackbarview.findViewById(android.support.design.R.id.snackbar_text);
+            tvSnackbarText.setTextColor(Color.WHITE);
+            snackbar.show();
+        }
+    }
+
+    public void noMoreMsg() {
+        View view = getActivity() == null ? recycleView.getRootView() : getActivity().findViewById(R.id.drawer_layout);
+        if (isAdded()) {
+            final Snackbar snackbar = Snackbar.make(view, getResources().getString(R.string.no_more), Snackbar.LENGTH_SHORT);
+            View snackbarview = snackbar.getView();
+            snackbarview.setBackgroundColor(getResources().getColor(R.color.snackbar));
+            TextView tvSnackbarText = (TextView) snackbarview.findViewById(android.support.design.R.id.snackbar_text);
+            tvSnackbarText.setTextColor(Color.WHITE);
+//            snackbar.setAction("click", new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    snackbar.dismiss();
+//                }
+//            });
+            snackbar.show();
+            adapter.isShowFooter(false);//关闭加载更多... 字符串
         }
     }
 
@@ -163,7 +207,8 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
 
     @Override
     public void onRefresh() {
-        if (mData != null) {
+        if (mData != null && mDataall != null) {
+            mDataall.clear();//一定要加上否则会报越界异常 不执行代码加载的if判断
             mData.clear();
         }
         Log.v("jjjjjjjjjjjjjjjj", "------onRefresh-----");

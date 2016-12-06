@@ -27,6 +27,8 @@
     <string name="tab_fashion">fashion</string>
 
     <string name="load_fail">load fail!</string>
+    <string name="no_more">No more news,Please refresh!</string>
+
 
 
 </resources>

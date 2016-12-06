@@ -13,5 +13,7 @@
     <color name="pressed">#95dafc</color>
     <color name="focused">#32bbff</color>
     <color name="secondary_text">#494949</color>
+    <color name="snackbar">#07deff</color>
+
 
 </resources>

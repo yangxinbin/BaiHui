@@ -31,6 +31,11 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mData = data;
         this.notifyDataSetChanged();
     }
+    /**     * 添加列表项     * @param item     */
+    public void addItem(ToutiaonewsBean bean){
+        mData.add(bean);
+        this.notifyDataSetChanged();
+    }
 
     public ToutiaonewsAdapter(Context context) {
         this.context = context;
@@ -73,8 +78,10 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             if (news == null) {
                 return;
             }
-            ((ItemViewHolder) holder).mTitle.setText(news.getResult().getData().get(position).getTitle());
-            Picasso.with(context).load(news.getResult().getData().get(position).getThumbnail_pic_s()).into(((ItemViewHolder) holder).mNewsImg);
+            if (((ItemViewHolder) holder) != null && ((ItemViewHolder) holder).mTitle != null) {
+                ((ItemViewHolder) holder).mTitle.setText(news.getResult().getData().get(position).getTitle());
+                Picasso.with(context).load(news.getResult().getData().get(position).getThumbnail_pic_s()).into(((ItemViewHolder) holder).mNewsImg);
+            }
         }
     }
 
