@@ -14,9 +14,10 @@ import java.util.List;
  * Created by Administrator on 2016/11/29 0029.
  */
 
-public class ToutiaonewsModelImpl implements ToutiaonewsModel{
+public class ToutiaonewsModelImpl implements ToutiaonewsModel {
     /**
      * 加载新闻列表
+     *
      * @param url
      * @param listener
      */
@@ -25,8 +26,7 @@ public class ToutiaonewsModelImpl implements ToutiaonewsModel{
         OkHttpUtils.ResultCallback<String> loadNewsCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
-                List<ToutiaonewsBean> newsBeanList = NewsJsonUtils.readJsonNewsBeans(response, "data");
-                Log.v("jjjjjjjjjjjjjjjj",newsBeanList.size()+"--"+type+"------newsBeanList-----");
+                List<ToutiaonewsBean> newsBeanList = NewsJsonUtils.readJsonNewsBeans(response, "data");//data是json字段获得data的值即对象数组
                 listener.onSuccess(newsBeanList);
             }
 
@@ -37,12 +37,19 @@ public class ToutiaonewsModelImpl implements ToutiaonewsModel{
         };
         OkHttpUtils.get(url, loadNewsCallback);
     }
+
+    @Override
+    public void loadNewsDetail(String url, OnLoadToutiaonewsDetailListener listener) {
+
+    }
+
+
     /**
      * 获取ID
      * @param type
      * @return
      */
-    private String getID(int type) {
+   /* private String getID(int type) {
         String id;
         switch (type) {
             case ToutiaonewsFragment.NEWS_TYPE_TOPNEWS:
@@ -80,5 +87,5 @@ public class ToutiaonewsModelImpl implements ToutiaonewsModel{
                 break;
         }
         return id;
-    }
+    }*/
 }

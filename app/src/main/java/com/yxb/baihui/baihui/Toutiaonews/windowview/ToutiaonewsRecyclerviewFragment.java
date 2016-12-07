@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -87,16 +89,14 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
             if (mData.size() <= 0) {
                 return;
             }
-            ToutiaonewsBean news = adapter.getItem(position);
+            String newsurl = adapter.getItem(position).getResult().getData().get(position).getUrl();
             Intent intent = new Intent(getActivity(), ToutiaonewsDetailActivity.class);
-            intent.putExtra("news", news);
-
-//            View transitionView = view.findViewById(R.id.ivNews);
-//            ActivityOptionsCompat options =
-//                    ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-//                            transitionView, getString(R.string.transition_news_img));
-//
-//            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            intent.putExtra("newsurl", newsurl);
+            View transitionView = view.findViewById(R.id.item_news_img);
+            ActivityOptionsCompat options =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                            transitionView, getString(R.string.transition_news_img));
+            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
         }
     };
     private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {

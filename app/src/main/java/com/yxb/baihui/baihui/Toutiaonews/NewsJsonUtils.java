@@ -37,7 +37,6 @@ public class NewsJsonUtils {
             JsonObject jsonObjresult = jsonObj.getAsJsonObject("result");
             JsonArray jsonArray = jsonObjresult.getAsJsonArray(value);
             for (int i = 0; i <= jsonArray.size(); i++){
-                JsonObject jo = jsonArray.get(i).getAsJsonObject();
                     ToutiaonewsBean news = JsonUtils.deserialize(jsonObj, ToutiaonewsBean.class);
                     beans.add(news);//这里会将所有的json对象转换为bean对象
             }

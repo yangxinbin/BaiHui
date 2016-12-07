@@ -28,4 +28,6 @@
     <string name="tab_fashion">时尚</string>
     <string name="load_fail">加载数据失败!</string>
     <string name="no_more">已经到最后了,查看更多内容请刷新!</string>
+    <string name="transition_news_img">图片转变</string>
+
 </resources>

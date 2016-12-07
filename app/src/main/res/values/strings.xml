@@ -28,6 +28,7 @@
 
     <string name="load_fail">load fail!</string>
     <string name="no_more">No more news,Please refresh!</string>
+    <string name="transition_news_img">transition_news_img</string>
 
 
 
