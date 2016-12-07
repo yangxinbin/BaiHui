@@ -118,23 +118,19 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
                 //加载更多
                 //mNewsPresenter.loadNews(mType);//加载最后报错
                 int count = adapter.getItemCount();
-                Log.v("jjjjjjjjjjjjjjjj", "------count-----"+count);
                 int i;
                 for (i = count; i < count + 5; i++) {
-                    Log.v("jjjjjjjjjjjjjjjj", "------i-----"+i);
-                    //Log.v("jjjjjjjjjjjjjjjj", "------mDataall.size()-----"+mDataall.size());
+                    if (mDataall == null){
+                        showLoadFailMsg();
+                        break;//一开始断网报空指针的情况
+                    }
                     if (i >= (mDataall.size()-1)){//比如一共30条新闻 这个条件当为29时还是可以把30那条新闻加上去的
-                        Log.v("jjjjjjjjjjjjjjjj", "------break-----");
                         noMoreMsg();
                         break;
                     }
-                    Log.v("jjjjjjjjjjjjjjjj", "------+1-----");
                     adapter.addItem(mDataall.get(i + 1));//addItem里面记得要notifyDataSetChanged 否则第一次加载不会显示数据
-                    Log.v("jjjjjjjjjjjjjjjj", "------mDataall.get(i + 1)-----"+mDataall.get(i + 1).getResult().getData().get(i+1).getTitle());
                 }
                 over=i;
-                Log.v("jjjjjjjjjjjjjjjj", "------loadNews-----");
-
             }
         }
     };
@@ -146,7 +142,6 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
 
     @Override
     public void addNews(List<ToutiaonewsBean> newsList) {
-        Log.v("jjjjjjjjjjjjjjjj", "------newsList-----"+newsList.size());
         adapter.isShowFooter(true);
         if (mData == null && mDataall == null) {
             mDataall = new ArrayList<ToutiaonewsBean>();
@@ -156,7 +151,6 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
         for (int i= 0 ;i<5;i++){
             mData.add(mDataall.get(i));
         }
-        Log.v("jjjjjjjjjjjjjjjj", "------mData-----"+mData.size());
         adapter.setmDate(mData);
     }
 
@@ -211,7 +205,6 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
             mDataall.clear();//一定要加上否则会报越界异常 不执行代码加载的if判断
             mData.clear();
         }
-        Log.v("jjjjjjjjjjjjjjjj", "------onRefresh-----");
         mNewsPresenter.loadNews(mType);
     }
 }
