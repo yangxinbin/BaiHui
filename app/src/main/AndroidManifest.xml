@@ -19,7 +19,7 @@
         <activity
             android:name=".Toutiaonews.windowview.ToutiaonewsDetailActivity"
             android:label="@string/title_activity_news_detail"
-            android:theme="@style/AppTheme_Translucent">
+            android:theme="@style/AppTheme">
 
         </activity>
         <activity

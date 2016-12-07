@@ -48,4 +48,9 @@ public class SwipeBackActivity extends AppCompatActivity implements SwipeBackAct
         Utils.convertActivityToTranslucent(this);
         getSwipeBackLayout().scrollToFinishActivity();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

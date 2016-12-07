@@ -8,7 +8,7 @@ import com.yxb.baihui.baihui.Toutiaonews.bean.ToutiaonewsDetailBean;
 
 public interface OnLoadToutiaonewsDetailListener {
 
-    void onSuccess(ToutiaonewsDetailBean newsDetailBean);
+    void onSuccess(String newsurl);
 
     void onFailure(String msg, Exception e);
 }
