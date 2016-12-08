@@ -90,7 +90,7 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
                 return;
             }
             String newsurl = adapter.getItem(position).getResult().getData().get(position).getUrl();
-            String newsimg = adapter.getItem(position).getResult().getData().get(position).getThumbnail_pic_s03();
+            String newsimg = adapter.getItem(position).getResult().getData().get(position).getThumbnail_pic_s();
             Intent intent = new Intent(getActivity(), ToutiaonewsDetailActivity.class);
             intent.putExtra("newsurl", newsurl);//传输内容
             intent.putExtra("newsimg", newsimg);//传输图片
