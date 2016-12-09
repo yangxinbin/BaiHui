@@ -44,7 +44,6 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
     private List<ToutiaonewsBean> mData;
     private LinearLayoutManager mLayoutManager;
     private ToutiaonewsAdapter adapter;
-    int over;//加載到的item数
 
 
     public static ToutiaonewsRecyclerviewFragment newInstance(int type) {
@@ -123,7 +122,6 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
                 int i;
                 for (i = count; i < count + 5; i++) {
                     if (mDataall == null){
-                        showLoadFailMsg();
                         break;//一开始断网报空指针的情况
                     }
                     if (i >= (mDataall.size()-1)){//比如一共30条新闻 这个条件当为29时还是可以把30那条新闻加上去的
@@ -132,7 +130,10 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
                     }
                     adapter.addItem(mDataall.get(i + 1));//addItem里面记得要notifyDataSetChanged 否则第一次加载不会显示数据
                 }
-                over=i;
+                if (mDataall !=null && i >= (mDataall.size()-1)){//到最后
+                    adapter.isFooter(false);
+                    noMoreMsg();
+                }
             }
         }
     };
@@ -191,7 +192,7 @@ public class ToutiaonewsRecyclerviewFragment extends Fragment implements Toutiao
 //                }
 //            });
             snackbar.show();
-            adapter.isShowFooter(false);//关闭加载更多... 字符串
+            //adapter.isShowFooter(false);//关闭加载更多... 字符串
         }
     }
 

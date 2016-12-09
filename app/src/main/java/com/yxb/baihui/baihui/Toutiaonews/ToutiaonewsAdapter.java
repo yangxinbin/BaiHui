@@ -26,7 +26,9 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int TYPE_FOOTER = 1;
     private boolean mShowFooter = true;
 
-
+public Boolean isFooter(Boolean isfooter){
+    return this.mShowFooter = isfooter;
+}
     public void setmDate(List<ToutiaonewsBean> data) {
         this.mData = data;
         this.notifyDataSetChanged();
