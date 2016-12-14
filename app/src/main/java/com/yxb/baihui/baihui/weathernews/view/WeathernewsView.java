@@ -5,4 +5,5 @@ package com.yxb.baihui.baihui.weathernews.view;
  */
 
 public interface WeathernewsView {
+
 }
