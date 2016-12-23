@@ -5,4 +5,5 @@ package com.yxb.baihui.baihui.weathernews.presenter;
  */
 
 public interface WeathernewsPresenter {
+    void loadWeatherData();
 }
