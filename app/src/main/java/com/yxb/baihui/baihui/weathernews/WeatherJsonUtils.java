@@ -1,12 +1,12 @@
 package com.yxb.baihui.baihui.weathernews;
 
 import android.text.TextUtils;
+import android.util.Log;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.yxb.baihui.baihui.R;
+import com.yxb.baihui.baihui.utils.JsonUtils;
 import com.yxb.baihui.baihui.weathernews.bean.WeathernewsBean;
 
 import java.util.ArrayList;
@@ -68,14 +68,15 @@ public class WeatherJsonUtils {
     }
 
     private static WeathernewsBean getWeatherBeanFromJson(JsonObject jsonObject) {
-        /*json对象们*/
+/*        Log.v("jjjjjjjj", "-------------getWeatherBeanFromJson-----");
+        *//*json对象们*//*
         JsonObject resultjsonObject = jsonObject.getAsJsonObject("result");
         JsonObject datajsonObject = resultjsonObject.getAsJsonObject("data");
         JsonObject realtimejsonObject = datajsonObject.getAsJsonObject("realtime");
         JsonObject weatherjsonObject = realtimejsonObject.getAsJsonObject("weather");
         JsonObject windjsonObject = realtimejsonObject.getAsJsonObject("wind");
 
-        /*具体字段*/
+        /*//*具体字段*//**//*
         String date = realtimejsonObject.get("date").getAsString();//日期
         String temperature = weatherjsonObject.get("temperature").getAsString();//当前温度
         String weather = weatherjsonObject.get("info").getAsString();//天气情况
@@ -83,18 +84,24 @@ public class WeatherJsonUtils {
         String wind = windjsonObject.get("direct").getAsString();
         String windpower = windjsonObject.get("power").getAsString();
         WeathernewsBean WeathernewsBean = new WeathernewsBean();
-        /*设置bean数据*/
+        *//*设置bean数据*//*
         if (WeathernewsBean.getResult() != null && WeathernewsBean.getResult().getData() != null &&
                 WeathernewsBean.getResult().getData().getRealtime() != null && WeathernewsBean.getResult().getData().getRealtime().getWeather() != null) {
+            Log.v("jjjjjjjj", "-------util_onSuccess-----"+WeathernewsBean.getResult().getData().getRealtime().getDate());
             WeathernewsBean.getResult().getData().getRealtime().setDate(date);//日期
+        Log.v("jjjjjjjj", "-------util_onSuccess---1--"+WeathernewsBean.getResult());
+        Log.v("jjjjjjjj", "-------util_onSuccess---2--"+WeathernewsBean.getResult().getData());
+        Log.v("jjjjjjjj", "-------util_onSuccess---3--"+WeathernewsBean.getResult().getData().getRealtime());
+        Log.v("jjjjjjjj", "-------util_onSuccess---4--"+WeathernewsBean.getResult().getData().getRealtime().getDate());
             WeathernewsBean.getResult().getData().getRealtime().getWeather().setTemperature(temperature);//当前温度
             WeathernewsBean.getResult().getData().getRealtime().getWeather().setInfo(weather);//天气情况
             WeathernewsBean.getResult().getData().getWeather().get(0).setWeek(week);//星期几
             WeathernewsBean.getResult().getData().getRealtime().getWind().setDirect(wind);//风向
             WeathernewsBean.getResult().getData().getRealtime().getWind().setPower(windpower);//风力
             WeathernewsBean.getResult().getData().getRealtime().getWeather().setImg(weather);//天气情况图片
-        }
-        return WeathernewsBean;
+        }*/
+        WeathernewsBean weathernewsBean = JsonUtils.deserialize(jsonObject, WeathernewsBean.class);
+        return weathernewsBean;
     }
 
 

@@ -31,7 +31,7 @@ public class WeathernewsModelImpl implements WeathernewsModel {
     public void loadWeatherData(String cityName, final LoadWeatherListener listener) {
         try {
             String url = Urls.WEATHER_HOST + Urls.WEATHER_CITYNAME + URLEncoder.encode(cityName, "utf-8") + Urls.WEATHER_END;
-            Log.v("jjjjjjjjjj","---------"+url);
+            Log.v("jjjjjjjjjj","--------weatherurl-----"+url);
             OkHttpUtils.ResultCallback<String> callback = new OkHttpUtils.ResultCallback<String>() {
                 @Override
                 public void onSuccess(String response) {
@@ -52,7 +52,7 @@ public class WeathernewsModelImpl implements WeathernewsModel {
 
     @Override
     public void loadLocation(Context context, final LoadLocationListener listener) {
-        /*locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -85,7 +85,7 @@ public class WeathernewsModelImpl implements WeathernewsModel {
             }
         };
         OkHttpUtils.get(url, callback);
-*/
+
     }
 
     private String getLocationURL(double latitude, double longitude) {

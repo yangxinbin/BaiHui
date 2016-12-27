@@ -1,5 +1,8 @@
 package com.yxb.baihui.baihui.weathernews.windowview;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +24,7 @@ import com.yxb.baihui.baihui.weathernews.presenter.WeathernewsPresenter;
 import com.yxb.baihui.baihui.weathernews.presenter.WeathernewsPresenterImpl;
 import com.yxb.baihui.baihui.weathernews.view.WeathernewsView;
 
+import java.io.InputStream;
 import java.util.List;
 
 import butterknife.Bind;
@@ -71,8 +75,10 @@ public class WeathernewsFragment extends Fragment implements WeathernewsView {
         View view = inflater.inflate(R.layout.fragment_weather, null);
         mWeatherPresenter.loadWeatherData();
         ButterKnife.bind(this, view);
+        rootLayout.setBackgroundResource(R.drawable.weatherbg);
         return view;
     }
+
 
     @Override
     public void showProgress() {
@@ -101,9 +107,16 @@ public class WeathernewsFragment extends Fragment implements WeathernewsView {
         today.setText(data);
     }
 
+    private String nowtime;
+
+    @Override
+    public void setTime(String time) {
+        nowtime = time;
+    }
+
     @Override
     public void setTemperature(String temperature) {
-        tempControl.setTemp(10, 30, Integer.parseInt(temperature), "更新于");
+        tempControl.setTemp(10, 30, Integer.parseInt(temperature), "更新于" + nowtime);
 
     }
 

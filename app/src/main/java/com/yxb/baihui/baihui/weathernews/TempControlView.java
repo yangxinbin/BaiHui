@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+
 import com.yxb.baihui.baihui.R;
 
 /**
@@ -55,10 +56,10 @@ public class TempControlView extends View {
     private int angleRate = 4;
     // 按钮图片
     private Bitmap buttonImage = BitmapFactory.decodeResource(getResources(),
-            R.drawable.btn_rotate);
+            R.mipmap.btn_rotate);
     // 按钮图片阴影
     private Bitmap buttonImageShadow = BitmapFactory.decodeResource(getResources(),
-            R.drawable.btn_rotate_shadow);
+            R.mipmap.btn_rotate_shadow);
     // 抗锯齿
     private PaintFlagsDrawFilter paintFlagsDrawFilter;
     // 温度改变监听
@@ -99,7 +100,7 @@ public class TempControlView extends View {
         titlePaint = new Paint();
         titlePaint.setAntiAlias(true);
         titlePaint.setTextSize(sp2px(15));
-        titlePaint.setColor(Color.parseColor("#E4A07E"));
+        titlePaint.setColor(Color.parseColor("#3B434E"));
         titlePaint.setStyle(Paint.Style.STROKE);
 
         tempFlagPaint = new Paint();

@@ -3,6 +3,7 @@ package com.yxb.baihui.baihui.weathernews.presenter;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.yxb.baihui.baihui.weathernews.bean.WeathernewsBean;
 import com.yxb.baihui.baihui.weathernews.model.WeathernewsModel;
@@ -33,6 +34,7 @@ public class WeathernewsPresenterImpl implements WeathernewsPresenter, Weatherne
         if (!isNetworkAvailable(mContext)) {
             mWeatherView.hideProgress();
             mWeatherView.showErrorToast("无网络连接");
+            Log.v("jjjjjjjj", "-------------isNetworkAvailable-----");
             return;
         }
         WeathernewsModelImpl.LoadLocationListener listener = new WeathernewsModelImpl.LoadLocationListener() {
@@ -47,6 +49,7 @@ public class WeathernewsPresenterImpl implements WeathernewsPresenter, Weatherne
             public void onFailure(String msg, Exception e) {
                 mWeatherView.showErrorToast("定位失败");
                 mWeatherView.setCity("深圳");
+                Log.v("jjjjjjjj", "-------------深圳-----");
                 mWeatherModel.loadWeatherData("深圳", WeathernewsPresenterImpl.this);
             }
         };
@@ -57,10 +60,13 @@ public class WeathernewsPresenterImpl implements WeathernewsPresenter, Weatherne
 
     @Override
     public void onSuccess(List<WeathernewsBean> list) {
+
+        Log.v("jjjjjjjj", "-------onSuccess-----");
+
         WeathernewsBean todayWeather = list.get(0);
-        if (todayWeather.getResult() != null && todayWeather.getResult().getData() != null &&
-                todayWeather.getResult().getData().getRealtime() != null && todayWeather.getResult().getData().getRealtime().getWeather() != null) {
-            mWeatherView.setToday(todayWeather.getResult().getData().getDate());
+
+            mWeatherView.setToday(todayWeather.getResult().getData().getRealtime().getDate());
+            mWeatherView.setToday(todayWeather.getResult().getData().getRealtime().getTime());
             mWeatherView.setTemperature(todayWeather.getResult().getData().getRealtime().getWeather().getTemperature());
             mWeatherView.setWeather(todayWeather.getResult().getData().getRealtime().getWeather().getInfo());
             mWeatherView.setWeek(todayWeather.getResult().getData().getWeather().get(0).getWeek());
@@ -69,10 +75,10 @@ public class WeathernewsPresenterImpl implements WeathernewsPresenter, Weatherne
             mWeatherView.setWeatherImage(todayWeather.getResult().getData().getRealtime().getWeather().getImg());
 
             //mWeatherView.setfutureWeatherData(list);
-
+            Log.v("jjjjjjjj", "-------showWeatherLayout------onSuccess-----");
             mWeatherView.hideProgress();
             mWeatherView.showWeatherLayout();
-        }
+
     }
 
     @Override

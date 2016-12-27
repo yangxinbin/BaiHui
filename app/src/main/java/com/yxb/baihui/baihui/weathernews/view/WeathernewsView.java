@@ -16,6 +16,7 @@ public interface WeathernewsView {
 
     void setCity(String city);
     void setToday(String data);
+    void setTime(String time);
     void setTemperature(String temperature);
     void setWind(String wind);
     void setWindPower(String windpower);
