@@ -1,13 +1,11 @@
 package com.yxb.baihui.baihui.weathernews.windowview;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +22,7 @@ import com.yxb.baihui.baihui.weathernews.presenter.WeathernewsPresenter;
 import com.yxb.baihui.baihui.weathernews.presenter.WeathernewsPresenterImpl;
 import com.yxb.baihui.baihui.weathernews.view.WeathernewsView;
 
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -75,7 +73,6 @@ public class WeathernewsFragment extends Fragment implements WeathernewsView {
         View view = inflater.inflate(R.layout.fragment_weather, null);
         mWeatherPresenter.loadWeatherData();
         ButterKnife.bind(this, view);
-        rootLayout.setBackgroundResource(R.drawable.weatherbg);
         return view;
     }
 
@@ -89,7 +86,9 @@ public class WeathernewsFragment extends Fragment implements WeathernewsView {
 
     @Override
     public void hideProgress() {
-        progress.setVisibility(View.GONE);
+        if (progress != null){
+            progress.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -150,6 +149,26 @@ public class WeathernewsFragment extends Fragment implements WeathernewsView {
 
     @Override
     public void setfutureWeatherData(List<WeathernewsBean> lists) {
+        List<View> adapterList = new ArrayList<View>();
+
+        List<WeathernewsBean.ResultBean.DataBean.WeatherBeanX> listfuture = lists.get(0).getResult().getData().getWeather();
+        for (int i = 1;i < listfuture.size();i++) {
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_weather, null, false);
+            TextView dateTV = (TextView) view.findViewById(R.id.date);
+            ImageView todayWeatherImage = (ImageView) view.findViewById(R.id.weatherImage);
+            TextView todayTemperatureTV = (TextView) view.findViewById(R.id.weatherTemp);
+            TextView todayWindTV = (TextView) view.findViewById(R.id.wind);
+            TextView todayWeatherTV = (TextView) view.findViewById(R.id.weather);
+
+            dateTV.setText("星期"+listfuture.get(i).getWeek());
+            todayTemperatureTV.setText(listfuture.get(i).getInfo().getDay().get(2)+"°C");
+            Log.v("jjjjjjj","-----------"+listfuture.get(i).getInfo().getDay().get(4)+"======"+listfuture.get(i).getInfo().getDay().get(1));
+            todayWindTV.setText(listfuture.get(i).getInfo().getDay().get(4));
+            todayWeatherTV.setText(listfuture.get(i).getInfo().getDay().get(1));
+            todayWeatherImage.setImageResource(getImagID(listfuture.get(i).getInfo().getDay().get(1)));
+            weatherContent.addView(view);
+            adapterList.add(view);
+        }
 
     }
 

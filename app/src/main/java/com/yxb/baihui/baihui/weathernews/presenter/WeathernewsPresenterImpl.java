@@ -4,12 +4,14 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.view.View;
 
 import com.yxb.baihui.baihui.weathernews.bean.WeathernewsBean;
 import com.yxb.baihui.baihui.weathernews.model.WeathernewsModel;
 import com.yxb.baihui.baihui.weathernews.model.WeathernewsModelImpl;
 import com.yxb.baihui.baihui.weathernews.view.WeathernewsView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,19 +67,19 @@ public class WeathernewsPresenterImpl implements WeathernewsPresenter, Weatherne
 
         WeathernewsBean todayWeather = list.get(0);
 
-            mWeatherView.setToday(todayWeather.getResult().getData().getRealtime().getDate());
-            mWeatherView.setToday(todayWeather.getResult().getData().getRealtime().getTime());
-            mWeatherView.setTemperature(todayWeather.getResult().getData().getRealtime().getWeather().getTemperature());
-            mWeatherView.setWeather(todayWeather.getResult().getData().getRealtime().getWeather().getInfo());
-            mWeatherView.setWeek(todayWeather.getResult().getData().getWeather().get(0).getWeek());
-            mWeatherView.setWind(todayWeather.getResult().getData().getRealtime().getWind().getDirect());
-            mWeatherView.setWindPower(todayWeather.getResult().getData().getRealtime().getWind().getPower());
-            mWeatherView.setWeatherImage(todayWeather.getResult().getData().getRealtime().getWeather().getImg());
+        mWeatherView.setToday(todayWeather.getResult().getData().getRealtime().getDate());
+        mWeatherView.setTime(todayWeather.getResult().getData().getRealtime().getTime());
+        mWeatherView.setTemperature(todayWeather.getResult().getData().getRealtime().getWeather().getTemperature());
+        mWeatherView.setWeather(todayWeather.getResult().getData().getRealtime().getWeather().getInfo());
+        mWeatherView.setWeek(todayWeather.getResult().getData().getWeather().get(0).getWeek());
+        mWeatherView.setWind(todayWeather.getResult().getData().getRealtime().getWind().getDirect());
+        mWeatherView.setWindPower(todayWeather.getResult().getData().getRealtime().getWind().getPower());
+        mWeatherView.setWeatherImage(todayWeather.getResult().getData().getRealtime().getWeather().getImg());
 
-            //mWeatherView.setfutureWeatherData(list);
-            Log.v("jjjjjjjj", "-------showWeatherLayout------onSuccess-----");
-            mWeatherView.hideProgress();
-            mWeatherView.showWeatherLayout();
+        mWeatherView.setfutureWeatherData(list);
+        Log.v("jjjjjjjj", "-------showWeatherLayout------onSuccess-----");
+        mWeatherView.hideProgress();
+        mWeatherView.showWeatherLayout();
 
     }
 

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <FrameLayout
+        app:layout_scrollFlags="scroll|enterAlways"
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:background="#cccccc">
+        android:background="@drawable/weabg">
 
         <ProgressBar
             android:id="@+id/progress"
@@ -24,13 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="12dp"
-
+            android:padding="2dp"
             android:gravity="center_horizontal" >
 
 
             <TextView
                 android:id="@+id/city"
+                android:padding="5dp"
                 style="@style/weacher_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,20 +40,20 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:orientation="horizontal" >
                 <TextView
                     android:id="@+id/today"
                     style="@style/weacher_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="45dp"
                     android:text="2015年12月22日" />
                 <TextView
+                    android:paddingLeft="10dp"
                     android:id="@+id/todayweek"
                     style="@style/weacher_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
                     android:text="星期二" />
 
             </LinearLayout>
@@ -70,8 +72,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="8dp">
+                    android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -106,16 +107,15 @@
             </LinearLayout>
 
             <com.yxb.baihui.baihui.weathernews.TempControlView
-                android:layout_marginLeft="20dp"
                 android:id="@+id/temp_control"
-                android:layout_width="200dp"
-                android:layout_height="200dp" />
+                android:layout_width="250dp"
+                android:layout_height="250dp" />
 
             <HorizontalScrollView
-                android:layout_marginLeft="30dp"
-                android:layout_width="290dp"
+                android:layout_width="350dp"
                 android:layout_height="match_parent" >
                 <LinearLayout
+                    android:layout_marginRight="50dp"
                     android:id="@+id/weather_content"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
