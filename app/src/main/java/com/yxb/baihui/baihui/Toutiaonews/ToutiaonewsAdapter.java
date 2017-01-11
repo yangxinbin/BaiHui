@@ -26,15 +26,19 @@ public class ToutiaonewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int TYPE_FOOTER = 1;
     private boolean mShowFooter = true;
 
-public Boolean isFooter(Boolean isfooter){
-    return this.mShowFooter = isfooter;
-}
+    public Boolean isFooter(Boolean isfooter) {
+        return this.mShowFooter = isfooter;
+    }
+
     public void setmDate(List<ToutiaonewsBean> data) {
         this.mData = data;
         this.notifyDataSetChanged();
     }
-    /**     * 添加列表项     * @param item     */
-    public void addItem(ToutiaonewsBean bean){
+
+    /**
+     * 添加列表项     * @param item
+     */
+    public void addItem(ToutiaonewsBean bean) {
         mData.add(bean);
         this.notifyDataSetChanged();
     }
@@ -82,7 +86,11 @@ public Boolean isFooter(Boolean isfooter){
             }
             if (((ItemViewHolder) holder) != null && ((ItemViewHolder) holder).mTitle != null) {
                 ((ItemViewHolder) holder).mTitle.setText(news.getResult().getData().get(position).getTitle());
-                Picasso.with(context).load(news.getResult().getData().get(position).getThumbnail_pic_s()).into(((ItemViewHolder) holder).mNewsImg);
+                if (news.getResult().getData().get(position).getThumbnail_pic_s().isEmpty()) {
+                    ((ItemViewHolder) holder).mNewsImg.setImageResource(R.drawable.defaultimage);
+                } else {
+                    Picasso.with(context).load(news.getResult().getData().get(position).getThumbnail_pic_s()).into(((ItemViewHolder) holder).mNewsImg);
+                }
             }
         }
     }
