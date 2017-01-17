@@ -2,11 +2,15 @@ package com.yxb.baihui.baihui.startapp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
+import android.transition.Explode;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.View;
@@ -14,11 +18,17 @@ import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yxb.baihui.baihui.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.SaveListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -29,19 +39,21 @@ public class RegisterActivity extends AppCompatActivity {
     EditText etPassword;
     @Bind(R.id.et_repeatpassword)
     EditText etRepeatpassword;
-    @Bind(R.id.bt_go)
-    Button btGo;
     @Bind(R.id.cv_add)
     CardView cvAdd;
     @Bind(R.id.fab)
     FloatingActionButton fab;
+    @Bind(R.id.mobilelogin)
+    TextView mobilelogin;
+    @Bind(R.id.bt_go)
+    Button btGo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-
+        Bmob.initialize(this, "aa77c3240a51be2b9ae4b124add66af9");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ShowEnterAnimation();
         }
@@ -51,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 animateRevealClose();
             }
         });
+
     }
 
     private void ShowEnterAnimation() {
@@ -131,5 +144,72 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         animateRevealClose();
+    }
+
+    @OnClick(R.id.mobilelogin)
+    public void onClick() {
+        Explode explode = new Explode();
+        explode.setDuration(500);
+        getWindow().setExitTransition(explode);
+        getWindow().setEnterTransition(explode);
+        ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
+        Intent i2 = new Intent(this, MobileLoginActivity.class);
+        startActivity(i2, oc2.toBundle());
+    }
+
+    @OnClick(R.id.bt_go)
+    public void register() {
+        registerUser();
+    }
+
+    private void registerUser() {
+        final String username = etUsername.getText().toString();
+        final String password = etPassword.getText().toString();
+        String repeatpassword = etRepeatpassword.getText().toString();
+        if (TextUtils.isEmpty(username)) {
+            showToast("用户名不能为空");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            showToast("密码不能为空");
+            return;
+        }
+        if (!password.equals(repeatpassword)) {
+            showToast("两次密码不一样");
+            return;
+        }
+        final BmobUser bu = new BmobUser();
+        bu.setUsername(username);
+        bu.setPassword(password);
+        bu.signUp(this, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                showToast("注册成功---用户名："+bu.getUsername());
+                Intent intent = new Intent(RegisterActivity.this,StartActivity.class);
+                intent.putExtra("username",username);
+                intent.putExtra("passwork",password);
+                startActivity(intent);
+                animateRevealClose();
+                finish();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                showToast("注册失败：code="+i+"，错误描述："+s);
+            }
+        });
+    }
+
+    Toast mToast;
+    public void showToast(String text) {
+        if (!TextUtils.isEmpty(text)) {
+            if (mToast == null) {
+                mToast = Toast.makeText(getApplicationContext(), text,
+                        Toast.LENGTH_SHORT);
+            } else {
+                mToast.setText(text);
+            }
+            mToast.show();
+        }
     }
 }

@@ -38,8 +38,13 @@
     <string name="forgot_your_password">Forgot your password ?</string>
     <string name="go">GO</string>
     <string name="repeat_password">Repeat Password</string>
-    <string name="next">NEXT</string>
+    <string name="finish">FINISH</string>
     <string name="register">REGISTER</string>
+    <string name="mobilelogin">MOBILE  LOGIN</string>
+    <string name="phonenumber">Phonenumber</string>
+    <string name="checknumber">Checknumber</string>
+    <string name="getchecknumber">GET NUMBER</string>
+
 
 
 </resources>
