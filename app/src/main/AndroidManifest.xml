@@ -52,9 +52,6 @@
         </activity>
         <activity android:name=".startapp.RegisterActivity"
             android:theme="@style/Translucent" />
-        <activity android:name=".startapp.MobileLoginActivity"
-            android:theme="@style/StartAppTheme"
-            ></activity>
 
     </application>
 

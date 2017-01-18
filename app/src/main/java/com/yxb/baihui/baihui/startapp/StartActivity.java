@@ -14,6 +14,7 @@ import android.transition.Explode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yxb.baihui.baihui.R;
@@ -25,7 +26,7 @@ import butterknife.OnClick;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.LogInListener;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -40,6 +41,20 @@ public class StartActivity extends AppCompatActivity {
     CardView cv;
     @Bind(R.id.fab)
     FloatingActionButton fab;
+    @Bind(R.id.mobilelogin)
+    TextView mobilelogin;
+    @Bind(R.id.phone_username)
+    EditText phoneUsername;
+    @Bind(R.id.phone_password)
+    EditText phonePassword;
+    @Bind(R.id.checknumber_get)
+    Button checknumberGet;
+    @Bind(R.id.phone_go)
+    Button phoneGo;
+    @Bind(R.id.phone_back)
+    Button phoneBack;
+    @Bind(R.id.phone_cv)
+    CardView phoneCv;
     private String uname;
 
     @Override
@@ -47,18 +62,22 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startapp_main);
         ButterKnife.bind(this);
+        cv.setVisibility(View.VISIBLE);
+        phoneCv.setVisibility(View.GONE);
         //第一：默认初始化
         Bmob.initialize(this, "aa77c3240a51be2b9ae4b124add66af9");
         Intent intent = getIntent();
         uname = intent.getStringExtra("username");
-
+        etUsername.setText(uname);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @OnClick({R.id.bt_go, R.id.fab})
+    @OnClick({R.id.bt_go, R.id.fab,R.id.mobilelogin, R.id.checknumber_get, R.id.phone_go, R.id.phone_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_go:
-                String username = etUsername.getText().toString();
+                //    BmobUser bu2 = new BmobUser();
+                final String username = etUsername.getText().toString();
                 String password = etUsername.getText().toString();
                 if (TextUtils.isEmpty(username)) {
                     showToast("账号不能为空");
@@ -68,12 +87,25 @@ public class StartActivity extends AppCompatActivity {
                     showToast("密码不能为空");
                     return;
                 }
-                BmobUser bu2 = new BmobUser();
-                if (!TextUtils.isEmpty(uname)){
-                    bu2.setUsername(uname);
-                }else {
-                    bu2.setUsername(username);
-                }
+                BmobUser.loginByAccount(this, username, password, new LogInListener<User>() {
+                    @Override
+                    public void done(User o, BmobException e) {
+                        if (e == null) {
+                            showToast("登录成功---用户名：" + username);
+                            Explode explode = new Explode();
+                            explode.setDuration(500);
+                            getWindow().setExitTransition(explode);
+                            getWindow().setEnterTransition(explode);
+                            ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(StartActivity.this);
+                            Intent i2 = new Intent(StartActivity.this, MainpageActivity.class);
+                            startActivity(i2, oc2.toBundle());
+                            finish();
+                        } else {
+                            showToast("登录失败：code=" + e.getErrorCode() + "，错误描述：" + e.getLocalizedMessage());
+                        }
+                    }
+                });
+               /* bu2.setUsername(username);
                 bu2.setPassword(password);
                 bu2.login(this, new SaveListener() {
                     @Override
@@ -92,7 +124,7 @@ public class StartActivity extends AppCompatActivity {
                     public void onFailure(int i, String s) {
                         showToast("登录失败：code="+i+"，错误描述："+s);
                     }
-                });
+                });*/
 
                 break;
             case R.id.fab:
@@ -107,9 +139,23 @@ public class StartActivity extends AppCompatActivity {
                     startActivity(new Intent(this, RegisterActivity.class));
                 }
                 break;
+            case R.id.mobilelogin:
+                cv.setVisibility(View.GONE);
+                phoneCv.setVisibility(View.VISIBLE);
+                break;
+            case R.id.checknumber_get:
+                break;
+            case R.id.phone_go:
+                break;
+            case R.id.phone_back:
+                cv.setVisibility(View.VISIBLE);
+                phoneCv.setVisibility(View.GONE);
+                break;
         }
     }
+
     Toast mToast;
+
     public void showToast(String text) {
         if (!TextUtils.isEmpty(text)) {
             if (mToast == null) {
@@ -121,4 +167,5 @@ public class StartActivity extends AppCompatActivity {
             mToast.show();
         }
     }
+
 }

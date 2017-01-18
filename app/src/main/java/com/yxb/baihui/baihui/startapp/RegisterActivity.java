@@ -43,8 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
     CardView cvAdd;
     @Bind(R.id.fab)
     FloatingActionButton fab;
-    @Bind(R.id.mobilelogin)
-    TextView mobilelogin;
     @Bind(R.id.bt_go)
     Button btGo;
 
@@ -144,17 +142,6 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         animateRevealClose();
-    }
-
-    @OnClick(R.id.mobilelogin)
-    public void onClick() {
-        Explode explode = new Explode();
-        explode.setDuration(500);
-        getWindow().setExitTransition(explode);
-        getWindow().setEnterTransition(explode);
-        ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
-        Intent i2 = new Intent(this, MobileLoginActivity.class);
-        startActivity(i2, oc2.toBundle());
     }
 
     @OnClick(R.id.bt_go)
